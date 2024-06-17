@@ -33,6 +33,7 @@ int ifchar(int character){
     return yeschar;
 }
 
+
 int main(){
 
     unsigned long charCount = 0;
