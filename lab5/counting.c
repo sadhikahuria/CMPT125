@@ -44,65 +44,63 @@ int main(){
     int newline = 10;
     int space = 32;
 
-    while ((input = getchar()) != EOF)
-    {
+    while ((input = getchar()) != EOF){
 
         // scenorio 1 starting of a word
-        if ((ifchar(previous) == 0) && (ifchar(input) == 1))
-        {
+        if ((ifchar(previous) == 0) && (ifchar(input) == 1)){
+
             wordCount++;
             charCount++;
         }
 
         // scenorio 2 middle of reading a word
-        if ((ifchar(previous) == 1) && ifchar(input) == 1)
-        {
+        if ((ifchar(previous) == 1) && ifchar(input) == 1){
+
             charCount++;
         }
 
         // scenorio 3 end of a word
-        if ((ifchar(previous) == 1))
-        {
-            if ((ifchar(input) == 0) || (input == newline))
-            {
+        if ((ifchar(previous) == 1)){
+
+            if ((ifchar(input) == 0) || (input == newline)){
+             
                 wordCount++;
                 charCount++;
             }
         }
 
         // scenorio 4 double charcters that are not a word
-        if ((ifchar(previous) == 0) && (ifchar(input) == 0))
-        {
-            if ((previous != space) || (input != space))
-            {
+        if ((ifchar(previous) == 0) && (ifchar(input) == 0)){
+            
+            if ((previous != space) || (input != space)){
                 charCount++;
             }
-            else if ((previous != space) && (input == newline))
-            {
+
+            else if ((previous != space) && (input == newline)){
                 charCount++;
             }
         }
 
         // counting lines
-        if (input == newline)
-        {
+        if (input == newline){
             lineCount++;
         }
         previous = input;
     }
-    if (ifchar(previous) == 1)
-    { // if the last charcter is a letter, so to account of the word ending
+
+
+    if (ifchar(previous) == 1){ // if the last charcter is a letter, so to account of the word ending
         wordCount++;
         charCount++;
     }
 
-    if (previous != newline)
-    { // to account for the last line which MAY not have '\n' as its ending charcter
+
+    if (previous != newline){ // to account for the last line which MAY not have '\n' as its ending charcter
         lineCount++;
     }
 
-    if ((ifchar(previous) == 0) && (previous != space))
-    { // if the last character is not a letter/ apostrope/ space
+
+    if ((ifchar(previous) == 0) && (previous != space)){ // if the last character is not a letter/ apostrope/ space
         charCount++;
     }
 
