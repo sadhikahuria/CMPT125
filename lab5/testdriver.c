@@ -3,8 +3,8 @@
  *
  * Description: Test Driver for the function InRectangle().
  *
- * Author: 
- * Modification Date: June 2024
+ * Author: Sadhika Huria
+ * Modification Date: June 18 2024
  */
 
 #include <stdio.h>
@@ -54,6 +54,59 @@ int main( int argc, char* argv[] ) {
     return 1; // indicate error
   }
   else printf( "\tTest Case 3 - Actual Result: point is on the edge of the rectangle!\n" );
+
+
+  //My own test cases
+  float rect2[CORNERS] = {-2.8, -39.5, 9.87, 2.0 };
  
-  return 0; // all tests passed
+  // Test Case 4
+
+  float p1[POINTS] = {-1.8, 1.578 };
+
+  printf( "Test Case 4\n" );
+  printf( "\tExpected Result: inside!\n" );
+
+  if( InRectangle( p1, rect2 ) == 0 ) {
+
+    puts( "\nTest Case 4 - error" );
+    // indicate error
+    
+  }
+  else printf( "\tTest Case 4 - Actual Result: inside!\n" );
+
+
+  // Test Case 5
+
+  float p2[POINTS] = {-98.5, 1.578 };
+
+  printf( "Test Case 5\n" );
+  printf( "\tExpected Result: outside!\n" );
+
+  if( InRectangle( p2, rect2 ) != 0 ) {
+
+    puts( "\nTest Case 5 - error" );
+     // indicate error
+    
+  }
+  else printf( "\tTest Case 6 - Actual Result: Outside!\n" );
+
+
+
+  // Test Case 6
+
+  float p3[POINTS] = {-2.8, 2.0 };
+
+  printf( "Test Case 6\n" );
+  printf( "\tExpected Result: onedge!\n" );
+
+  if( InRectangle( p3, rect2 ) == 0 ) {
+
+    puts( "\nTest Case 6 - error" );
+    return 1; // indicate error
+    
+  }
+  else printf( "\tTest Case 6 - Actual Result: onedge!\n" );
+
+
+  return 0; 
 }

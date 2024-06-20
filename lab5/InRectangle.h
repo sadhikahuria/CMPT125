@@ -1,3 +1,6 @@
+//header file for InRectangle.c
+// Author: Sadhika Huria
+
 #define POINTS 2
 #define CORNERS 4
 
