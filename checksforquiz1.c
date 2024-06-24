@@ -27,3 +27,5 @@ int main(){
     printf("\nthe small is %.1f", small);
     printf("\nthe sum is %.1f", sum);
 }
+
+

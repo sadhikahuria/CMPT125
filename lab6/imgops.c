@@ -142,9 +142,12 @@ void flip_horizontal( uint8_t array[],
                       unsigned int rows )
 {
   // Put your code here
-  for (unsigned int i = 0; i < ((rows * cols)/2); i++){
+  unsigned int arr_end = (rows*cols)-1;
+  unsigned int middle = ((rows*cols)/2);
+  for (unsigned int i = 0; i < (middle); i++){
     uint8_t filler = array[i];
-    array[i] = 
+    array[i] = array[arr_end - i];
+    array[arr_end - i] = filler;
   }
   return;
 }
