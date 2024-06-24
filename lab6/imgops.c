@@ -59,11 +59,11 @@ void set_pixel( uint8_t array[],
 */
 
 /* Set every pixel to zero 0 (black). */
-void zero( uint8_t array[],
-	   unsigned int cols,
-	   unsigned int rows )
-{
-  // Put your code here
+void zero( uint8_t array[], unsigned int cols, unsigned int rows ){
+  for( unsigned int i = 0; i < (rows * cols); i++){
+    array[i] = 0;
+  }
+
   return;
 }
 
@@ -78,7 +78,17 @@ uint8_t* copy( const uint8_t array[],
                unsigned int rows )
 {
   // Put your code here
-  return NULL; // You will need to change NULL to something more appropriate.
+  uint8_t *arr_copy = malloc(cols * rows * sizeof(unsigned int));
+  if( arr_copy == NULL){
+    perror("allocation for arr_copy failed");
+    exit(1);
+  }
+  for ( unsigned int i = 0; i < (rows*cols); i++){
+    arr_copy[i] = array[i];
+  }
+
+
+  return arr_copy; // You will need to change NULL to something more appropriate.
 }
 
 /* Return the darkest colour that appears in the image. */
@@ -86,8 +96,13 @@ uint8_t darkest( const uint8_t array[],
                  unsigned int cols, 
                  unsigned int rows )
 {
-  // Put your code here
-  return 0; // You will need to change 0 to something more appropriate.
+  uint8_t dark = array[0];
+  for( unsigned int i = 0; i < (rows*cols); i++){
+    if( array[i] < dark){
+      dark = array[i];
+    }
+  }
+  return dark; // You will need to change 0 to something more appropriate.
 }
 
 /* Return the lightest colour that appears in the image. */
@@ -96,7 +111,13 @@ uint8_t lightest( const uint8_t array[],
 	              unsigned int rows )
 {
   // Put your code here
-  return 0; // You will need to change 0 to something more appropriate.
+  uint8_t light = array[0];
+  for( unsigned int i = 0; i < (rows*cols); i++){
+    if( array[i] > light){
+      light = array[i];
+    }
+  }
+  return light; // You will need to change 0 to something more appropriate.
 }
 
 /* Replace every instance of pre_colour with post_colour. */
@@ -107,6 +128,11 @@ void replace_colour( uint8_t array[],
                     uint8_t post_colour )
 {
   // Put your code here
+  for ( unsigned int i = 0; i < (rows*cols); i++){
+    if ( array[i] == pre_colour){
+      array[i] = post_colour;
+    }
+  }
   return;
 }
 
@@ -116,6 +142,10 @@ void flip_horizontal( uint8_t array[],
                       unsigned int rows )
 {
   // Put your code here
+  for (unsigned int i = 0; i < ((rows * cols)/2); i++){
+    uint8_t filler = array[i];
+    array[i] = 
+  }
   return;
 }
 
