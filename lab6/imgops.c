@@ -6,8 +6,8 @@
  * Author: RV - 2014
  * Modified by: AL - 2024
  *
- * Completed by: <Put your name here>
- * Completion Date: 
+ * Completed by: Sadhika Huria
+ * Completion Date: june 25
  */
 
 #include <assert.h>
@@ -61,7 +61,7 @@ void set_pixel( uint8_t array[],
 /* Set every pixel to zero 0 (black). */
 void zero( uint8_t array[], unsigned int cols, unsigned int rows ){
   for( unsigned int i = 0; i < (rows * cols); i++){
-    array[i] = 0;
+    array[i] = 0; // setting all elements to zero
   }
 
   return;
@@ -78,17 +78,17 @@ uint8_t* copy( const uint8_t array[],
                unsigned int rows )
 {
   // Put your code here
-  uint8_t *arr_copy = malloc(cols * rows * sizeof(unsigned int));
+  uint8_t *arr_copy = (uint8_t*)malloc(cols * rows * sizeof(uint8_t)); // allocate the copied array
   if( arr_copy == NULL){
-    perror("allocation for arr_copy failed");
+    perror("allocation for arr_copy failed"); //checking for successful allocation
     exit(1);
   }
   for ( unsigned int i = 0; i < (rows*cols); i++){
-    arr_copy[i] = array[i];
+    arr_copy[i] = array[i]; // coping all elemets
   }
 
 
-  return arr_copy; // You will need to change NULL to something more appropriate.
+  return arr_copy; // returning the copied array
 }
 
 /* Return the darkest colour that appears in the image. */
@@ -96,13 +96,13 @@ uint8_t darkest( const uint8_t array[],
                  unsigned int cols, 
                  unsigned int rows )
 {
-  uint8_t dark = array[0];
+  uint8_t dark = array[0]; //setting the darkest ti tge first element
   for( unsigned int i = 0; i < (rows*cols); i++){
-    if( array[i] < dark){
-      dark = array[i];
+    if( array[i] < dark){ // looking for elements darker than dark
+      dark = array[i]; 
     }
   }
-  return dark; // You will need to change 0 to something more appropriate.
+  return dark; //returning the darkest elements
 }
 
 /* Return the lightest colour that appears in the image. */
@@ -111,9 +111,9 @@ uint8_t lightest( const uint8_t array[],
 	              unsigned int rows )
 {
   // Put your code here
-  uint8_t light = array[0];
+  uint8_t light = array[0]; // assigning light to first element
   for( unsigned int i = 0; i < (rows*cols); i++){
-    if( array[i] > light){
+    if( array[i] > light){ //checking for lighter element
       light = array[i];
     }
   }
@@ -142,12 +142,15 @@ void flip_horizontal( uint8_t array[],
                       unsigned int rows )
 {
   // Put your code here
-  unsigned int arr_end = (rows*cols)-1;
-  unsigned int middle = ((rows*cols)/2);
-  for (unsigned int i = 0; i < (middle); i++){
-    uint8_t filler = array[i];
-    array[i] = array[arr_end - i];
-    array[arr_end - i] = filler;
+  for( unsigned int i = 0; i < rows; i++){
+    //itterating through each row
+    for( unsigned int j = 0; j < (cols/2); j++){
+      //flipping each row
+      uint8_t filler = array[i* cols + j];
+      array[i* cols + j] = array[i * cols + (cols - j-1)]; //flipping each element
+      array[i * cols + (cols - j-1)] = filler;
+      
+    }
   }
   return;
 }

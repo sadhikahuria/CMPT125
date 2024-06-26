@@ -1,11 +1,11 @@
 /*
- * draw.c 
+* draw.c 
  *
  * minimal graphics code to render a uint8_t array in an X11 window
  * and wait for a button or key press
  * 
  * Richard Vaughan, 2014
- */
+*/
 
 #include <stdio.h>
 #include <stdlib.h>		/* getenv(), etc. */
