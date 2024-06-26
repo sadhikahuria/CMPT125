@@ -190,6 +190,9 @@ void invert( uint8_t array[],
              unsigned int cols, 
              unsigned int rows )
 {
-  // Put your code here
+  uint8_t maxval = 255;
+  for ( unsigned int i = 0; i < ( rows * cols); i++){
+    array[i] = maxval - array[i];
+  }
   return;
 }
