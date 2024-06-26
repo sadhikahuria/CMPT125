@@ -165,8 +165,21 @@ int locate_colour( const uint8_t array[],
                   unsigned int *x,
                   unsigned int *y )
 {
-  // Put your code here
-  return 0;  // You will need to change 0 to something more appropriate.
+  int returnval = 0;
+  for ( unsigned int i = 0; i < rows; i++)
+  {
+    for (unsigned int j = 0; j < cols; j++)
+    {
+      if ( array[i + ( j*cols)] == colour)
+      {
+        x = i;
+        y = j; 
+        returnval = 1;
+      
+      }
+    }
+  }
+  return returnval;  // You will need to change 0 to something more appropriate.
 }
 
 /* Invert the image such that black becomes white and vice
