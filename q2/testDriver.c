@@ -24,7 +24,6 @@
 
 
 int main( int argc, char * argv[] ) {
-
   // Windowing system setup
   const unsigned int winwidth  = 400;
   const unsigned int winheight = 400;

@@ -64,7 +64,13 @@ void print_pixel_below( const uint8_t array[],
                         unsigned int x,
                         unsigned int y )
 {
-    // Put your code here
+    unsigned int y2 = y+1;
+    uint8_t colour = array[y2*cols + x];
+    // or 
+    // uint8_t colour = get_pixel( array, cols, rows, x, y2);
+
+    printf("\n\tThe colour of the pixel below the pixel located at coordinates (%d, %d) is %c.\n", x, y2, colour);
+
     return;
 } 
 
@@ -73,7 +79,8 @@ void print_pixel_below( const uint8_t array[],
 */
 
 /*
-  Returns a pointer to a freshly allocated array that contains the
+  Returns a pointer to a freshly allocated array that c----
+  OPERATIONS ON THE WHOLE IMAGE ontains the
   same values as the original array, or a null pointer if the
   allocation fails. The caller is responsible for freeing the array
   later.
@@ -102,6 +109,14 @@ void flip_vertical( uint8_t array[],
                     unsigned int cols, 
                     unsigned int rows )
 {
-  // Put your code here
+  for ( int i = 0; i < (rows/2); i++){
+    
+    for( int j = 0; j <cols; j++){
+      uint8_t filler = array[j*cols +i];
+      array[j*cols +i] = array[j*cols + (rows - i- 1)];
+       array[j*cols + (rows - i- 1)] = filler;
+
+    }
+  }
   return;
 }
