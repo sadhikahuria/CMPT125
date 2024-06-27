@@ -68,7 +68,9 @@ int main( int argc, char * argv[] ) {
   // ********************************************************
   // Get more windows if needed by copying, pasting and modifying the above code
   // ********************************************************
-  
+  flip_vertical(img, imgwidth, imgheight);
+  draw_image_grey( img, imgwidth, imgheight );
+
   // ********************************************************
   // Finalize the graphics system, freeing its resources
   draw_shutdown();
