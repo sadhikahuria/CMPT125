@@ -69,10 +69,12 @@ void print_pixel_below( const uint8_t array[],
     // or 
     // uint8_t colour = get_pixel( array, cols, rows, x, y2);
 
-    printf("\n\tThe colour of the pixel below the pixel located at coordinates (%d, %d) is %c.\n", x, y2, colour);
+    printf("\n\tThe colour of the pixel below the pixel located at coordinates (%d, %d) is %d.\n", x, y2, colour);
 
     return;
 } 
+
+
 
 /*-------------------------------------------------
   OPERATIONS ON THE WHOLE IMAGE 
