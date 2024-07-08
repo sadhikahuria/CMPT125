@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef struct Book{
     char title[50];
@@ -30,6 +31,7 @@ int main(){
         exit(1);
     }
 
+    book_t book3 = { "some title", "some author", "some subject", 139302};
     
     strcpy( book1ptr->title, "C Programming");
     strcpy( book1ptr->author, "Huna Ali");
@@ -46,6 +48,9 @@ int main(){
 
     printf("Book 2:\n");
     printBook(book2ptr);
+
+    printf("Book3:\n");
+    printBook(&book3);
 
 
 
