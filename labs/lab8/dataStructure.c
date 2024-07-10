@@ -119,11 +119,6 @@ intArrayResult_t intArray_remove( intArray_t * ia, unsigned int indexToBeRemoved
     return INTARR_BADPARAM;
   }
 
-  //check bounds through size
-  if ( ( indexToBeRemoved >= ia-> size ) || ( indexToBeRemoved < 0 )){
-    return INTARR_BADPARAM;
-  }
-
   //check bounds through count
     if ( ( indexToBeRemoved >= ia-> elementCount ) || ( indexToBeRemoved < 0 )){
     return INTARR_BADPARAM;
@@ -148,12 +143,20 @@ intArrayResult_t intArray_remove( intArray_t * ia, unsigned int indexToBeRemoved
  * Time Efficiency: O(1)
  */
 intArrayResult_t intArray_modify( intArray_t * ia, int newElement, unsigned int index ) {
-	
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_modify(...) with the parameters newElement -> %d and index -> %u.\n" , newElement, index );
-	
-  return INTARR_OK; // You are free to modify this return statement.
+	//checking if ia is null
+  if (ia == NULL){
+    return INTARR_BADPARAM;
+
+  }
+  //checking bounds
+  if ( (index >= ia-> elementCount) || ( index < 0)){
+    return INTARR_BADPARAM;
+  }
+
+  //overwriting
+  ia -> data[index] = newElement;
+  return INTARR_OK;
+  
 }
 							
 /* Description: Finds the first occurrence of "targetElement" in the data structure,
@@ -163,12 +166,22 @@ intArrayResult_t intArray_modify( intArray_t * ia, int newElement, unsigned int 
  * Time efficiency: O(n)
  */
 intArrayResult_t intArray_find( intArray_t * ia, int targetElement, unsigned int * index ) {
-    
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_find(...) with the parameter targetElement -> %d.\n" , targetElement );
-	
-  return INTARR_NOTFOUND; // You are free to modify this return statement.
+  //check is ia is null
+  if ((ia == NULL) || (index == NULL)){
+    return INTARR_BADPARAM;
+  }  
+
+  //looking for element
+  for( int i = 0; i < ia-> elementCount; i++){
+    if( ( ia-> data[i] ) == targetElement ){
+      *index = i;
+      return INTARR_OK;
+    }
+  }
+
+  //if element not found
+  return INTARR_NOTFOUND;
+  
 }
 
 /* Description: Sorts the data structure by value in ascending sort order 
@@ -180,12 +193,21 @@ intArrayResult_t intArray_find( intArray_t * ia, int targetElement, unsigned int
  * Space efficiency: O(1) - Bubble Sort is an "in-place" algorithm.
  */
 intArrayResult_t intArray_sort( intArray_t * ia ) {
-	
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_sort(...).\n" );
-	
-  return INTARR_OK;  // You are free to modify this return statement.
+  if ( ia == NULL){
+    return INTARR_BADPARAM;
+  }
+
+  for (unsigned int i = 0; i < ia->elementCount - 1; i++) {
+    for (unsigned int j = 0; j < ia->elementCount - i - 1; j++) {
+      if (ia->data[j] > ia->data[j + 1]) {
+        // Swap elements
+        int filler = ia->data[j];
+        ia->data[j] = ia->data[j + 1];
+        ia->data[j + 1] = filler;
+      }
+    }
+  }
+  return INTARR_OK;
 }
 							
 /* Description: Returns a duplicate copy of "ia", allocating new storage 
@@ -194,12 +216,24 @@ intArrayResult_t intArray_sort( intArray_t * ia ) {
  *              or "ia" is NULL), returns a NULL pointer. 
  */
 intArray_t * intArray_copy( const intArray_t * ia ) {
+  //check if ia is NULL
+  if (ia == NULL){
+    return ia;
+  }
 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_copy(...).\n" );
-  
-  return NULL; // You are free to modify this return statement.
+  //allocating
+  intArray_t *copy = intArray_create(ia-> size);
+  if (copy == NULL){
+    return NULL;
+  }
+
+  //copy
+  for(unsigned int i = 0; i < ia-> elementCount; i++){
+    copy-> data[i] = ia->data[i];
+  }
+  copy -> elementCount = ia -> elementCount;
+
+  return copy;
 }
 
 /* Description: Prints each field (member) of the data structure "ia" and
@@ -207,10 +241,19 @@ intArray_t * intArray_copy( const intArray_t * ia ) {
  * Time Efficiency: O(n)
  */
 intArrayResult_t intArray_print( intArray_t * ia ) {
-	
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_print(...).\n" );
+	// check if ia is null
+  if( ia == NULL){
+    return INTARR_BADPARAM;
+  }
+
+  printf("Size: %u\n", ia-> size);
+  printf("Element Count: %u\n", ia-> elementCount);
+  printf("Data: ");
+  for(unsigned int i = 0; i < ia -> elementCount; i++){ //printing all elements
+    printf("%d, ", ia -> data[i]);
+  }
+
+  printf("\n");
   
   return INTARR_OK;  // You are free to modify this return statement.
 }

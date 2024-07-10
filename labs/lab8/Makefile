@@ -1,12 +1,35 @@
-CFLAGS = -std=c99 -g -Wall -O3
-LDFLAGS = -lm -lpng
+# Compiler
+CC = gcc
 
-LDFLAGS += 'pkg-config --libs x11'
-CFLAGS += 'pkg-config --cflags x11'
+# Compiler flags
+CFLAGS = -Wall -Wextra -std=c11
 
-dstr = dataStructure.c testdriver.c
-dst: $(dstr) dataStructure.h
-	gcc $(CFLAGS) -o dst $(dstr) $(LDFLAGS)
+# Target executable
+TARGET = testdriver
 
+# Source files
+SRCS = dataStructure.c testdriver.c
+
+# Object files
+OBJS = $(SRCS:.c=.o)
+
+# Header files
+HDRS = dataStructure.h
+
+# Default target
+all: $(TARGET)
+
+# Rule to build the target executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Rule to build object files
+%.o: %.c $(HDRS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up
 clean:
-	rm -f dst *-o
+	rm -f $(OBJS) $(TARGET)
+
+# Phony targets
+.PHONY: all clean
