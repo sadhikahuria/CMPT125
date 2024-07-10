@@ -39,7 +39,7 @@ int main( int argc, char * argv[] ) {
     intArray_append( original, ( rand() % original->size ) ); 
   }
 
-  printf("Printing original\n"); 
+  printf("Printing original\n");  
   intArray_print( original );
 
   // Deep copy:
