@@ -86,12 +86,25 @@ intArrayResult_t intArray_destroy( intArray_t * ia ) {
  * Time efficiency: O(1)
  */
 intArrayResult_t intArray_append( intArray_t * ia, int newElement ) {
-	
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_append(...) with the parameter newElement -> %d.\n", newElement );
-	
-  return INTARR_OK; // You are free to modify this return statement.
+  //check if ia is null
+  if (ia == NULL){
+    return INTARR_BADPARAM;
+  }
+
+  // check if array is full
+  if (ia-> elementCount == ia-> size){
+    return INTARR_ERROR;
+  }
+
+  //append and update struct parameters
+  if (ia-> elementCount < ia-> size){
+    ia -> data[ia-> elementCount] = newElement;
+    ia-> elementCount ++;
+  return INTARR_OK;
+  }
+  else{
+    return INTARR_ERROR;
+  }
 }
 				
 /* Description: Removes the element at "indexToBeRemoved" in the data structure
@@ -101,12 +114,32 @@ intArrayResult_t intArray_append( intArray_t * ia, int newElement ) {
  * Time efficiency: O(1)
  */
 intArrayResult_t intArray_remove( intArray_t * ia, unsigned int indexToBeRemoved ) {
-	
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_remove(...) with the parameter indexToBeRemoved -> %u.\n" , indexToBeRemoved );
-	
-  return INTARR_OK; // You are free to modify this return statement.
+	//check if ia is null
+  if( ia == NULL){
+    return INTARR_BADPARAM;
+  }
+
+  //check bounds through size
+  if ( ( indexToBeRemoved >= ia-> size ) || ( indexToBeRemoved < 0 )){
+    return INTARR_BADPARAM;
+  }
+
+  //check bounds through count
+    if ( ( indexToBeRemoved >= ia-> elementCount ) || ( indexToBeRemoved < 0 )){
+    return INTARR_BADPARAM;
+  }
+
+
+  //remove and adjust index
+  int adjustindex = indexToBeRemoved;
+  while((adjustindex < ia-> elementCount)){
+    ia-> data[adjustindex] = ia-> data[adjustindex+1];
+    adjustindex++;
+  }
+
+  ia-> elementCount--;
+
+  return INTARR_OK;
 }
 
 /* Description: Modifies (overwrites) the element at "index" with "newElement"
