@@ -253,7 +253,7 @@ intArrayResult_t intArray_print( intArray_t * ia ) {
     printf("%d, ", ia -> data[i]);
   }
 
-  printf("%d\n", ia-> elementCount);
+  printf("%d\n", ia-> data[ia->elementCount]);
   
   return INTARR_OK;  // You are free to modify this return statement.
 }
