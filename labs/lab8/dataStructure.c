@@ -288,7 +288,7 @@ intArrayResult_t intArray_write_to_json( intArray_t * ia, const char * filename 
     return INTARR_ERROR;
   }
 
-  FILE * myfile = fopen( filename, "W");
+  FILE * myfile = fopen( filename, "w");
   //checking to see if fopen is succesful
   if (myfile == NULL){
     return INTARR_ERROR;
@@ -296,7 +296,7 @@ intArrayResult_t intArray_write_to_json( intArray_t * ia, const char * filename 
 
   // printing in the given format above
 
-  fprintf(myfile, "[\n\t%d,\n]", ia-> elementCount);
+  fprintf(myfile, "[\n\t%d,\n", ia-> elementCount);
   for ( unsigned int i = 0; i < ia -> elementCount; i++){
     fprintf( myfile, "\t%d", ia-> data[i]);
     if ( i < ia-> elementCount - 1){

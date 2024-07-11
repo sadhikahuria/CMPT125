@@ -101,10 +101,13 @@ int main(){
         printf("ERROR destroy");
         return 0;
     }
+
+    intArray_print(json);
     if (intArray_destroy(json) != INTARR_OK){
         printf("Error destory json");
         return 0;
     }
 
+    printf("success\n");
     return 1;
 }
