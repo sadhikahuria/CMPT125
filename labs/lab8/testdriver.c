@@ -1,3 +1,5 @@
+//test driver
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "dataStructure.h"
@@ -24,13 +26,13 @@ int main(){
 
 
     int random = arr -> data[8];
-    unsigned int *index;
-    if ( intArray_find( arr, random, index) != INTARR_OK){
+    unsigned int index;
+    if ( intArray_find( arr, random, &index) != INTARR_OK){
         printf("ERRORRR finding");
         return 0;
     }
     if (index != 8){
-        prinf("ERROR wrong index found");
+        printf("ERROR wrong index found");
         return 0;
     }
     
@@ -81,13 +83,13 @@ int main(){
 
 
     if ( intArray_write_to_json( arr, "test.json") != INTARR_OK){
-        prinf("ERRORRRRR write to json:");
+        printf("ERRORRRRR write to json:");
         return 0;
     }
 
     intArray_t *json = intArray_load_from_json("test.json");
     if (json == NULL){
-        prinf("failed reading");
+        printf("failed reading");
         return 0;
     }
     if ( json-> elementCount != arr-> elementCount){
@@ -100,12 +102,9 @@ int main(){
         return 0;
     }
     if (intArray_destroy(json) != INTARR_OK){
-        prinf("Error destory json");
+        printf("Error destory json");
         return 0;
     }
 
     return 1;
-
-
-
 }

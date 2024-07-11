@@ -120,13 +120,13 @@ intArrayResult_t intArray_remove( intArray_t * ia, unsigned int indexToBeRemoved
   }
 
   //check bounds through count
-    if ( ( indexToBeRemoved >= ia-> elementCount ) || ( indexToBeRemoved < 0 )){
+    if ( ( indexToBeRemoved >= ia-> elementCount ) ){
     return INTARR_BADPARAM;
   }
 
 
   //remove and adjust index
-  int adjustindex = indexToBeRemoved;
+  unsigned int adjustindex = indexToBeRemoved;
   while((adjustindex < ia-> elementCount)){
     ia-> data[adjustindex] = ia-> data[adjustindex+1];
     adjustindex++;
@@ -149,7 +149,7 @@ intArrayResult_t intArray_modify( intArray_t * ia, int newElement, unsigned int 
 
   }
   //checking bounds
-  if ( (index >= ia-> elementCount) || ( index < 0)){
+  if ( (index >= ia-> elementCount)){
     return INTARR_BADPARAM;
   }
 
@@ -172,7 +172,7 @@ intArrayResult_t intArray_find( intArray_t * ia, int targetElement, unsigned int
   }  
 
   //looking for element
-  for( int i = 0; i < ia-> elementCount; i++){
+  for( unsigned int i = 0; i < ia-> elementCount; i++){
     if( ( ia-> data[i] ) == targetElement ){
       *index = i;
       return INTARR_OK;
