@@ -249,11 +249,11 @@ intArrayResult_t intArray_print( intArray_t * ia ) {
   printf("Size: %u\n", ia-> size);
   printf("Element Count: %u\n", ia-> elementCount);
   printf("Data: ");
-  for(unsigned int i = 0; i < ia -> elementCount; i++){ //printing all elements
+  for(unsigned int i = 0; i < ia -> elementCount-1; i++){ //printing all elements
     printf("%d, ", ia -> data[i]);
   }
 
-  printf("\n");
+  printf("%d\n", ia-> elementCount);
   
   return INTARR_OK;  // You are free to modify this return statement.
 }
