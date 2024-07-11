@@ -158,7 +158,7 @@ intArrayResult_t intArray_modify( intArray_t * ia, int newElement, unsigned int 
   return INTARR_OK;
   
 }
-							
+
 /* Description: Finds the first occurrence of "targetElement" in the data structure,
  *              sets "*index" to its index and returns INTARR_OK. If "targetElement" 
  *              does not occur in the data structure, leaves "*index" unmodified 
@@ -218,7 +218,7 @@ intArrayResult_t intArray_sort( intArray_t * ia ) {
 intArray_t * intArray_copy( const intArray_t * ia ) {
   //check if ia is NULL
   if (ia == NULL){
-    return ia;
+    return NULL;
   }
 
   //allocating
@@ -272,20 +272,46 @@ intArrayResult_t intArray_print( intArray_t * ia ) {
  *          produced by first saving "elemenCount" (3), then
  *          each of the 3 elements contained in the array
  *          (100, 200, 300) into a file:
- * [ 
+ * [
  *  3,
  *  100, 
  *  200, 
  *  300 
  * ]
  */
+
+
 intArrayResult_t intArray_write_to_json( intArray_t * ia, const char * filename ) {
 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_write_to_json(...) with the filename -> %s.\n", filename );
+  //checking is array or the file is null
+  if ( (ia == NULL) || ( filename == NULL)){
+    return INTARR_ERROR;
+  }
 
-  return INTARR_OK; // You are free to modify this return statement.
+  FILE * myfile = fopen( filename, "W");
+  //checking to see if fopen is succesful
+  if (myfile == NULL){
+    return INTARR_ERROR;
+  }
+
+  // printing in the given format above
+
+  fprintf(myfile, "[\n\t%d,\n]", ia-> elementCount);
+  for ( unsigned int i = 0; i < ia -> elementCount; i++){
+    fprintf( myfile, "\t%d", ia-> data[i]);
+    if ( i < ia-> elementCount - 1){
+      fprintf(myfile, ",");
+    }
+    fprintf(myfile, "\n");
+
+  }
+  fprintf(myfile, "]\n");
+
+
+  //close the file
+  fclose(myfile);
+
+  return INTARR_OK; 
 }
 
 
@@ -298,9 +324,43 @@ intArrayResult_t intArray_write_to_json( intArray_t * ia, const char * filename 
  */
 intArray_t * intArray_load_from_json( const char * filename ) {
 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function.
-  printf( "Calling intArray_load_from_json(...) with the filename -> %s.\n", filename );
+  //check if filename is null
+  if (filename == NULL){
+    return NULL;
+  }
 
-  return NULL; // You are free to modify this return statement.
+  //open file
+  FILE *myfile = fopen(filename, "r");
+  //check fopen
+  if (myfile == NULL){
+    return NULL;
+  }
+
+  
+  //check size
+  unsigned int size;
+  fscanf(myfile, "[\n\t%d,\n", &size);
+  
+  //create array
+  intArray_t *newarr = intArray_create(size);
+
+  //check for create
+  if (newarr == NULL){
+    return NULL;
+  }
+
+
+  // reading my elements
+  for(unsigned int i = 0; i < size-1; i++){
+    fscanf( myfile, "\t%d,\n", &(newarr-> data[i]));
+    newarr-> elementCount ++;
+  }
+  fscanf(myfile, "\t%d\n", &(newarr-> data[size-1]));
+  newarr-> elementCount ++;
+
+  //close the file and return
+  fclose(myfile);
+  return newarr;
+
 }
+
