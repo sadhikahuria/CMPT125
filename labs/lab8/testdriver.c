@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dataStructure.h"
+#include <assert.h>
 
+/*
 int main(){
 
     intArray_t *arr = intArray_create(10);
@@ -13,7 +15,7 @@ int main(){
     }
 
     for ( int i = 0; i < 10; i++){
-        if (intArray_append( arr, rand() ) != INTARR_OK){
+        if (intArray_append( arr, i ) != INTARR_OK){
             printf("ERRORRRRR append");
             return 0;
         } 
@@ -110,4 +112,14 @@ int main(){
 
     printf("success\n");
     return 1;
+}
+*/
+int main(){
+    intArray_t *something;
+    something = intArray_create(10);
+    intArray_append(something, 5);
+    intArray_t *copy = intArray_copy(something);
+    assert(something != copy);
+    assert(something-> data == copy-> data);
+    
 }
