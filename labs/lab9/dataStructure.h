@@ -1,6 +1,7 @@
 /* 
  * dataStructure.h
  *
+ * 
  * Provides a data structure made of a doubly-headed singly-linked list (DHSL) 
  * of unsorted elements (integers) in which duplicated elements are allowed.
  * 
