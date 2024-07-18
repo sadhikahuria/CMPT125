@@ -22,7 +22,7 @@
  *
  * Your name: Sadhika Huria
  * Modified Date: July 17
-*/
+*/ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,8 +39,14 @@
 list_t * list_create( void ) {
 
   list_t * aList = malloc( sizeof(list_t) );
-  aList->head = NULL;
-
+  if (aList == NULL){
+    return NULL;
+  }
+  else {
+    aList->head = NULL;
+    aList -> tail = NULL;
+    aList-> elementCount = 0;
+  }
   return aList;
 }
 
@@ -50,13 +56,15 @@ list_t * list_create( void ) {
  * Time Efficiency: O(n)
  */ 
 listResult_t list_destroy( list_t * list ) {
+  listResult_t result = LIST_OK;
+  if (list != NULL){
+    if (list-> head != NULL && list-> elementCount != 0){
+      element_t *removenode = list->head;
+      
+    }
+  }
   
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function, i.e., 
-  // ***Remove this call to printf!***
-  printf( "Calling list_destroy(...).\n" );
-  
-  return LIST_OK;
+  return result;
 }
 
 /* 
@@ -68,7 +76,14 @@ listResult_t list_destroy( list_t * list ) {
 element_t * element_create( int newElement ) {
 
   element_t * anElement = malloc( sizeof(element_t) );
-  anElement->val = newElement;
+
+  if(anElement == NULL){
+    return NULL;
+  }
+  else {
+    anElement->val = newElement;
+    anElement-> next = NULL;
+  }
 
   return anElement;
 }
@@ -81,13 +96,25 @@ element_t * element_create( int newElement ) {
  * Time efficiency: O(1)
  */
 listResult_t list_append( list_t * list, int newElement ) {
-	
-  listResult_t result = LIST_OK;
- 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function, i.e., 
-  // ***Remove this call to printf!*** 
-  printf( "Calling list_append(...): appending newElement %d to list.\n", newElement );
+	listResult_t result = LIST_OK;
+  if(list == NULL){
+    result = LIST_NULL_PARAM;
+  }
+
+  else{
+    element_t * newNode = element_create(newElement);
+    if (newNode == NULL){
+      result = LIST_ERROR;
+    }
+    if ( (list-> elementCount == 0) || (list-> head == NULL)){
+      list-> head = newNode;
+    }
+    else{
+      list-> tail -> next = newNode;
+    }
+    list -> tail = newNode;
+    list-> elementCount ++;
+  }
   
   return result;
 }
@@ -136,11 +163,20 @@ listResult_t list_removeFront( list_t * list ) {
 	
   listResult_t result = LIST_OK;
 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function, i.e., 
-  // ***Remove this call to printf!***
-  printf( "Calling list_removeFront(...): remove first element at the front of the list.\n" );
-  
+  if(list == NULL){
+    result = LIST_NULL_PARAM;
+  }
+  else{
+    if(list-> head != NULL){
+      element_t *remove = list-> head;
+      list-> head = list -> head -> next;
+      free(remove);
+      remove = NULL;
+      list-> elementCount --;
+
+    }
+    else{result = LIST_ERROR;}
+  }
   return result;
 }
 							
@@ -156,14 +192,16 @@ listResult_t list_removeFront( list_t * list ) {
  */ 
 element_t * list_get( list_t * list, unsigned int position ){
 
-  element_t * anElement = NULL;
-
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function, i.e., 
-  // ***Remove this call to printf!***
-  printf( "Calling list_get(...): getting element (node) at position %u in the list.\n", position );    
-    
-  return anElement;
+  if((list == NULL) || (list-> elementCount < position) || (position < 1)){
+    return NULL;
+  }
+  element_t *current = list-> head;
+  for(unsigned int i = 1; i < position; i++){
+    if (current -> next != NULL){
+      current = current -> next;
+    }
+  }    
+  return current;
 }
 
 /* Description: Returns a pointer to the element (i.e., to the node) that 
