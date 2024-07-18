@@ -67,9 +67,11 @@ listResult_t list_destroy( list_t * list ) {
       while(removenode != NULL){
         element_t *nextnode = removenode-> next;
         free(removenode);
-        removenode = nextElement;
+        removenode = nextnode;
       }
-      
+      removenode = NULL;
+      free(list);
+      list = NULL;
     }
   }
   
@@ -218,18 +220,25 @@ element_t * list_get( list_t * list, unsigned int position ){
  *              structure pointed to by "list". Returns NULL if "targetElement"
  *              is not found. Returns NULL if "list" is NULL.
  *              This function does not modify the data structure.
+ * 
  * Time efficiency: O(n)
  */ 
 element_t * list_find( list_t * list, int targetElement ) {
 
-  element_t * anElement = NULL; 
+  if(list == NULL){
+    return NULL;
+  }
 
-  // Function Stub
-  // This stub is to be removed when you have successfully implemented this function, i.e., 
-  // ***Remove this call to printf!***  
-  printf( "Calling list_find(...): find the first occurrence of targetElement %d in the list.\n", targetElement );
-  
-  return anElement;
+  element_t * anElement = list-> head;
+  while (anElement != NULL){
+    if (anElement -> val == targetElement){
+      return anElement;
+    }
+    anElement = anElement -> next;
+  }
+
+  return NULL;
+
 }
 
 /* Description: Prints the content of the data structure pointed to by "list",
@@ -242,7 +251,6 @@ element_t * list_find( list_t * list, int targetElement ) {
 listResult_t list_print( list_t * list ) {
 
   listResult_t result = LIST_OK;
-
   // Returns LIST_NULL_PARAM if "list" is NULL.
   if ( list == NULL ) result = LIST_NULL_PARAM;
   else {  
