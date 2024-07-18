@@ -20,8 +20,8 @@
  *
  * Do not change the dataStructure.h file.
  *
- * Your name:
- * Modified Date: 
+ * Your name: Sadhika Huria
+ * Modified Date: July 17
 */
 
 #include <stdio.h>
