@@ -55,10 +55,20 @@ list_t * list_create( void ) {
  * Time Efficiency: O(n)
  */ 
 listResult_t list_destroy( list_t * list ) {
+
   listResult_t result = LIST_OK;
-  if (list != NULL){
+
+  if (list == NULL){
+    result = LIST_NULL_PARAM;
+  }
+  else{
     if (list-> head != NULL && list-> elementCount != 0){
       element_t *removenode = list->head;
+      while(removenode != NULL){
+        element_t *nextnode = removenode-> next;
+        free(removenode);
+        removenode = nextElement;
+      }
       
     }
   }
@@ -194,13 +204,13 @@ element_t * list_get( list_t * list, unsigned int position ){
   if((list == NULL) || (list-> elementCount < position) || (position < 1)){
     return NULL;
   }
-  element_t *current = list-> head;
+  element_t *anElement = list-> head;
   for(unsigned int i = 1; i < position; i++){
-    if (current -> next != NULL){
-      current = current -> next;
+    if (anElement -> next != NULL){
+      anElement = anElement -> next;
     }
   }    
-  return current;
+  return anElement;
 }
 
 /* Description: Returns a pointer to the element (i.e., to the node) that 
