@@ -23,7 +23,7 @@ int binary(int *arr, int low, int high, int target){
         if (arr[high] == target){
             return high;
         } else {
-            return NULL;
+            return '\0';
         }
     } else {
         int mid = (low + high)/2;
@@ -38,14 +38,40 @@ int binary(int *arr, int low, int high, int target){
         }
         
     }
-    return NULL;
+    return '\0';
     
 }
-
+int Binary(int *arr, int low, int high, int target){
+    
+    while ( low <= high ){
+        int mid = (high + low) / 2;
+        if ( arr[mid] == target) {
+            return mid;
+        }
+        else if ( arr[mid] < target) {
+            return Binary(arr, mid+1, high, target);
+        } 
+        else if ( arr[mid] > target){
+            return Binary( arr, low, mid-1, target);
+        }
+        else{
+            return '\0';
+        }
+    }
+    return '\0';
+}
 int main(){
 
     //fact() check
     unsigned int num = 5 ;
     printf("fact of %d is %d\n", num, fact(num));
-    return 0;
+    
+
+    //binary
+    int arr[7] = {1, 2, 4, 5, 6, 8, 9};
+    int target = 6;
+    int ser1 = binary(arr, 0, 6, target);
+    int ser2 = Binary(arr, 0, 6, target);
+    printf("ser 1: %d, and ser 2: %d, write answer is 4", ser1, ser2);
 }
+
