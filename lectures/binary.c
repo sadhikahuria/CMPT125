@@ -15,9 +15,9 @@
 // 0b00011011 0b means binary number
 
 int main(){
-    char x = 0b00011011;
+    char x = 0b01111000;
     unsigned char y = 0b10000000;
-    char z = 246;
-    printf("x = %c\ny = %c\nzz = %c\n", x, y, z);
-    
+    char z = 120;
+    printf(" x = %d or %c \n y = %d\n z = %c\n", x, x, y, z);
+
 }
