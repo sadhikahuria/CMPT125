@@ -23,7 +23,7 @@ int binary(int *arr, int low, int high, int target){
         if (arr[high] == target){
             return high;
         } else {
-            return '\0';
+            return -1;
         }
     } else {
         int mid = (low + high)/2;
@@ -38,7 +38,7 @@ int binary(int *arr, int low, int high, int target){
         }
         
     }
-    return '\0';
+    return -1;
     
 }
 int Binary(int *arr, int low, int high, int target){
@@ -55,10 +55,10 @@ int Binary(int *arr, int low, int high, int target){
             return Binary( arr, low, mid-1, target);
         }
         else{
-            return '\0';
+            return -1;
         }
     }
-    return '\0';
+    return -1;
 }
 int main(){
 
@@ -72,6 +72,8 @@ int main(){
     int target = 6;
     int ser1 = binary(arr, 0, 6, target);
     int ser2 = Binary(arr, 0, 6, target);
-    printf("ser 1: %d, and ser 2: %d, write answer is 4", ser1, ser2);
+    int div1 = 6/2;
+    int div2 = 7/2;
+    printf("6/2 is %d and 7/2 is %d\n", div1, div2);
 }
 
