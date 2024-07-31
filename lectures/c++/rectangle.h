@@ -23,14 +23,14 @@ Methods:
     there is a constructor and a destructor
 
 */
-#ifndef RECTANGLE.H
-#define RECTANGLE.H
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
 
 class rectangle {
     
     private: //private, can't be seen through client code, like test driver
     
-    const unsigned int default = 10;
+    const unsigned int defaul = 10;
     unsigned int width;
     unsigned int height;
 

@@ -17,20 +17,20 @@ manipulate:
 
 using std::cin;
 using std::cout;
-using std::end1;
+using std::endl;
 
 //implementations
 
-rectangle::rectangle() : width(default), height(default){
-    cout << "Calling default constructor." << end1;
+rectangle::rectangle() : width(defaul), height(defaul){
+    cout << "Calling default constructor." << endl;
 }
 
 rectangle::rectangle(unsigned int awidth, unsigned int aheight) {
-    cout << "Calling parameterized constructor with width" << awidth << " and a height " << aheight << end1;
+    cout << "Calling parameterized constructor with width " << awidth << " and a height " << aheight << endl;
     width = awidth;
     height = aheight;
-    if ( awidth <= 0 ) width = default;
-    if ( aheight <= 0) height = default;
+    if ( awidth <= 0 ) width = defaul;
+    if ( aheight <= 0) height = defaul;
 }
 
 // use the destructor provided by the system
@@ -49,12 +49,12 @@ unsigned int rectangle::getheight() const{
 //setters
 void rectangle::setwidth(unsigned int awidth) {
     if ( awidth > 0) width = awidth;
-    else width = default;
+    else width = defaul;
     return;
 }
-void rectangle::getheight(unsigned int aheight){
+void rectangle::setheight(unsigned int aheight){
     if (aheight > 0) height = aheight;
-    else height = default;
+    else height = defaul;
     return;
 }
 
@@ -65,7 +65,7 @@ void rectangle::getheight(unsigned int aheight){
     void printRectangle() const;
     */
 
-unsigned int rectangle::conputearea() const{
+unsigned int rectangle::computearea() const{
     return width * height;
 }
 
@@ -76,6 +76,6 @@ bool rectangle::isSquare() const{
 void rectangle::printRectangle() const{
     cout << "Retangle's width is " << getwidth();
     cout << " and the height is " << getheight();
-    cout << "." << end1;
+    cout << "." << endl;
     return;
 }
