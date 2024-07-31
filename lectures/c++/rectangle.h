@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 // rectangle.h
 
 // methods: functions for a class
@@ -33,7 +30,7 @@ class rectangle {
     
     private: //private, can't be seen through client code, like test driver
     
-    const unsigned default = 10;
+    const unsigned int default = 10;
     unsigned int width;
     unsigned int height;
 
@@ -63,4 +60,4 @@ class rectangle {
 };
 
 #endif
->>>>>>> 7c95d4ab505b0931ceaf20baf67c27453c703049
+
