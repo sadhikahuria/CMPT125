@@ -101,14 +101,47 @@ bool List::removeAtFront( ) {
 //              in the List, using the following format:
 //              "The element in the List with the minimum value is _____." 
 //              filling in the blank with this minimum value.
-//              This method returns true if successful. Otherwise,
+//              This method returns true if successful. Otherwise,e
 //              it sets the parameter to nullptr and returns false. 
 // Precondition: List is not empty.
 // Postcondition: List unchanged.
-// Time Efficicency: _______________  *** Write your Time Efficicency here! ***
+// Time Efficicency: ____O(n)________  *** Write your Time Efficicency here! ***
+
 bool List::findMin( unsigned int * minPosition ) const {
-	
-  // Put your code here!
+
+  bool result = true; //result
+  bool empty = (head == nullptr); //precondition
+
+  if (empty){
+    minPosition = nullptr;
+    result = false;
+  }//fail 
+
+  if(!empty){ // if list not empty 
+
+    Node *current = head; // anchoring 
+    int minval = current->data; // minimum value to compare and to store, set to the first element
+    unsigned int pos = 1; // to compare elements starting with position 1 
+    unsigned int minpos = 1; // to store the minimum position starting with minval position, which is 1
+
+    while (current != nullptr){ // while the next elment is not null/ next list element still exists
+
+      if (current-> data < minval){ //comparing each element to the min val
+        minval = current->data; // setting the next min
+        minpos = pos; // setting the position of the min element to current position
+      }
+
+      current = current-> next; //traversing through the list
+      pos++; //incrementing position
+    }
+
+    *minPosition = minpos; // setting the pointer to the value 
+
+    //printing min val and its position
+    cout << "The element in the list with the minimum value is " << minval << " at position " << minpos << endl;
+
+    return result; //return successful or not
+  }
   
 }
 
