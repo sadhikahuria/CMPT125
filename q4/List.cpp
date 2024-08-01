@@ -96,7 +96,7 @@ bool List::removeAtFront( ) {
 // D101-D102 
 // Description: This method finds the element with the minimum value in
 //              the List and returns its position number via the parameter. 
-//              Careful: The position numbers range from 1 to "elementCount".
+//              Careful: The pnavigatingosition numbers range from 1 to "elementCount".
 //             	This method also prints this element, with the minimum value
 //              in the List, using the following format:
 //              "The element in the List with the minimum value is _____." 
@@ -140,9 +140,9 @@ bool List::findMin( unsigned int * minPosition ) const {
     //printing min val and its position
     cout << "The element in the list with the minimum value is " << minval << " at position " << minpos << endl;
 
-    return result; //return successful or not
+    
   }
-  
+  return result; //return successful or not
 }
 
     

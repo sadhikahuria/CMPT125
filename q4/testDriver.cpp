@@ -33,6 +33,8 @@ int main() {
   /* Printing the List */ 
   cout << "Printing the List with " << aList->getElementCount( ) << " elements." << endl; 
   aList->printList( );   
+  unsigned int *wht;
+  bool check = aList->findMin(wht);
   
   delete aList;
   aList = NULL;
