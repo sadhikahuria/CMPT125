@@ -25,6 +25,7 @@ class List {
     
     constexpr static unsigned int defal = 5;
     List();
+    List(unsigned int arraySize);
     ~List();
     
     int getElementCount() const;

@@ -5,6 +5,9 @@ using std::cout;
 using std::endl;
 
 List::List(){}
+List::List(unsigned int AarraySize){
+    arraySize = AarraySize;
+}
 List::~List(){
      this-> clear();
      }
@@ -21,6 +24,8 @@ void List::clear(){
     elementCount = 0;
     return;
 }
+
+
 
 bool List::insert(unsigned int position, int newElement){
     bool abletoinsert = (position >=1 ) && ( position <= elementCount +1) && (elementCount < arraySize);
