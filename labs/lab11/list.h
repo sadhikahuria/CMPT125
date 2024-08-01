@@ -12,27 +12,26 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include "Node.h"
-
 class List {
 
     private:
-
-    Node * head = nullptr;
-    Node * tail = nullptr;
+    int * elements = nullptr;
+    void clear();
     unsigned int elementCount = 0;
+    unsigned int arraySize = defal;
 
 
     public:
-
+    
+    constexpr static unsigned int defal = 5;
     List();
     ~List();
-
-    unsigned int getElementCount() const;
-    bool append(int newElement);
-    bool prepend(int newElement);
-    bool removeAtFront();
-    bool getFrontElement( int * frontElement ) const;
+    
+    int getElementCount() const;
+    bool insert(unsigned int position, int newElement);
+    bool remove(unsigned int position);
+    bool retrieve(unsigned int position, int *retrieveElement) const;
+    bool modify(unsigned int position, int newElement);
     void printList() const;
 
 };
