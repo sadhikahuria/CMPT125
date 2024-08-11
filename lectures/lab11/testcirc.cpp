@@ -17,7 +17,7 @@ int main(){
 
     cout << "printing c2";
     c2.printCircle();
-    cout << "Changing c2";
+    cout << "Changing c2" << endl;
     c2.setRadius(4);
     c2.move(4,5);
     cout << "printing c2";

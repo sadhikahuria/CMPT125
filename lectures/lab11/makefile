@@ -1,7 +1,7 @@
 all: testcirc
 
 testcirc: testcirc.o Circle.o
-	g++ -Wall -o testcirc.o Circle.o
+	g++ -Wall -o testcirc testcirc.o Circle.o
 
 Circle.o: Circle.cpp Circle.h
 	g++ -Wall -c Circle.cpp 

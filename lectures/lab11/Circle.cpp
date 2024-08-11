@@ -5,7 +5,11 @@
 using std::cout;
 using std::endl;
 
-Circle::Circle() {}
+Circle::Circle() {
+    x = 0;
+    y = 0;
+    radius = DEFAULT_VALUE;
+}
 
 Circle::Circle(int xCoord, int yCoord, double aRadius){
     x = xCoord;
@@ -46,8 +50,8 @@ double Circle::computeArea() const{
 }
 
 void Circle::printCircle() const{
-    cout << "This circle has a radius of " << radius << "and is located at point";
-    cout << "(" << x << ", " << y << ")" << endl;
+    cout << endl << "This circle has a radius of " << radius << " and is located at point";
+    cout << " (" << x << "," << y << ")" << endl;
 }
 
 
