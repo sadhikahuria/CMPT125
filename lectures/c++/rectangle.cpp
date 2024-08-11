@@ -1,5 +1,5 @@
 /* 
-ok so i am trying to see if this commit and push works
+
 rectangle:
     width
     height
