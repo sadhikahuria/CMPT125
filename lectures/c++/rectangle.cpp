@@ -19,6 +19,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+
 //implementations
 
 rectangle::rectangle() : width(defaul), height(defaul){
