@@ -62,13 +62,12 @@ bool List::getFrontElement(int *frontElement) const {
 }
 
 void List::printList() const{
-    cout << endl << "This List had " << elementCount << " elements:";
-    cout << "{ ";
+    cout << endl << "This List had " << elementCount << " elements: { ";
     Node *current = head;
-    while ( current != nullptr ){
+    while ( current -> next != nullptr ){
         cout << current->data << ", ";
         current = current-> next;
     }
-    cout << " }" << endl;
+    cout << current-> data << " }" << endl;
     return;
 }
