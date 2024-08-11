@@ -1,5 +1,4 @@
 /* 
-
 rectangle:
     width
     height
