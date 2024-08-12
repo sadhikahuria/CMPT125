@@ -3,11 +3,12 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-  if (12 == ((int) argv[1])){
-    printf("ok\n");
-  }
-  prinf("printing 2 and 3rd: %s and %s", argv[2], argv[3]);
+
+  printf("printing 2 and 3rd: %s and %s", argv[2], argv[3]);
   
-  
+  FILE *file;
+  file = fopen(argv[1], "w");
+  fprintf(file, "hello\n");
+  printf("%s", argv[4]);
   return 0;
 }
